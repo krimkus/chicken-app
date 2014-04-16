@@ -88,7 +88,14 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     'django.contrib.messages.context_processors.messages',
 ]
 
-JINGO_EXCLUDE_APPS = ('admin', 'registration', 'debug_toolbar', 'ckeditor', 'reversion', 'rest_framework')
+JINGO_EXCLUDE_APPS = (
+    'admin',
+    'registration',
+    'debug_toolbar',
+    'ckeditor',
+    'reversion',
+    'rest_framework',
+    )
 
 
 ##
