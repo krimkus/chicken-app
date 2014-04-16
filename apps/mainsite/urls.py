@@ -6,16 +6,13 @@ from django.shortcuts import redirect
 from django.views.generic.base import RedirectView
 from mainsite.views import Error404, Error500, SitemapView
 from homepage.sitemap import HomeSitemap
-from blog.sitemap import BlogSitemap
 from skycms.structure.sitemap import PageSitemap
-
 
 admin.autodiscover()
 #make sure that any view/model/form imports occur AFTER admin.autodiscover
 
 sitemaps = {
     'index': HomeSitemap,
-    'blog': BlogSitemap,
     'pages': PageSitemap,
 }
 
