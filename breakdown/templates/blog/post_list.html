@@ -1,0 +1,47 @@
+{% extends "base_interior.html" %}
+
+
+{% set page_title=snippet('blog-page-title')|striptags|default('Blog Posts', true) %}
+
+
+{% block content %}	
+	<div class="content_listing">	
+		<ul>
+			{% for object in object_list %}
+			<li>
+				<aside>
+					{% if object.image and object.image.small %}
+						<a href="{{object.get_absolute_url()}}"><img src="{{object.image.small.url}}" alt="{{object.name}}" /></a>
+					{% endif %}
+					<p class="date">{{object.publish|short_date_format}}</p>
+				</aside>
+				<article>
+					<h4><a href="{{object.get_absolute_url()}}">{{object.name}}</a></h4>
+					<p>{{object.excerpt()}} <a href="{{object.get_absolute_url()}}">Keep Reading</a></p>
+				</article>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+	{% if is_paginated %}
+	<div class="pagination">
+		<a href="?page={{page_obj.previous_page_number()}}" class="nav prev{% if not page_obj.has_previous() %} disabled{% endif %}">Prev</a>
+
+		<ul>
+			{% for page_number in paginator.page_range %}
+				{% if page_number == 1 or page_number == paginator.num_pages or (2 > page_obj.number - page_number and 2 > page_number - page_obj.number)  %}
+					<li><a href="?page={{page_number}}" {% if page_number == page_obj.number %}class="current"{% endif %}>{{page_number}}</a></li>
+				{% else %}
+					{% if 2 == page_obj.number - page_number or 2 == page_number - page_obj.number  %}
+						<li>...</li>
+					{% endif %}
+				{% endif %}
+			{% endfor %}
+		</ul>
+
+		<a href="?page={{page_obj.next_page_number()}}" class="nav next{% if not page_obj.has_next() %} disabled{% endif %}">Prev</a>
+	</div>
+	{% endif %}
+
+{% endblock %}

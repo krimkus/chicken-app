@@ -1,0 +1,35 @@
+{% extends "base_interior.html" %}
+
+
+{% set page_title=snippet('blog-page-title')|striptags|default('Blog Posts', true) %}
+
+
+{% block content %}
+	<div class="content_area">
+		<h4>{{object.name}}</h4>
+		<p class="date">{{object.publish|short_date_format}}</p>
+		{{object.body|safe_ckeditor}}
+	</div>
+	
+	{% if object.image or recent_posts %}
+		<aside class="content_secondary">
+			{% if object.image %}
+			<article class="image_single">
+				<img src="{{object.image.url}}" alt="{{object.name}}" />
+			</article>
+			{% endif %}
+
+			{% if recent_posts %}
+			<article class="posts">
+				<h4>Most Recent Posts</h4>
+				<ul>
+					{% for post in recent_posts %}
+					<li><a href="{{post.get_absolute_url()}}">{{post.name}}</a></li>
+					{% endfor %}
+				</ul>
+				<p class="see_all"><a href="{{url('blog_list')}}">See all</a></p>
+			</article>
+			{% endif %}
+		</aside>
+	{% endif %}
+{% endblock %}
