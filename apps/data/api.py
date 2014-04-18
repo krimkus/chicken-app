@@ -85,3 +85,11 @@ class CheckinQuestionResponseViewSet(LimitToCreatorViewSet):
     """
     queryset = CheckinQuestionResponse.objects.all()
     serializer_class = CheckinQuestionResponseSerializer
+
+
+class ReminderTypeViewSet(LimitToCreatorViewSet):
+    """
+    API endpoint that allows reminder types to be viewed or edited.
+    """
+    queryset = ReminderType.objects.all()
+    serializer_class = ReminderTypeSerializer

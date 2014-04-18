@@ -14,6 +14,7 @@ router.register(r'questions', api.CheckinQuestionViewSet)
 router.register(r'answers', api.CheckinAnswerViewSet)
 router.register(r'checkins', api.CheckinViewSet)
 router.register(r'responses', api.CheckinQuestionResponseViewSet)
+router.register(r'reminders', api.ReminderTypeViewSet)
 
 
 urlpatterns = patterns('data.views',
